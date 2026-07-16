@@ -10,7 +10,7 @@ import Home from "./pages/Home"
 
 import ServicesPage from "./pages/ServicesPage";
 
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
 
 import Documents from "./pages/Staff/Documents";
 import About from "./pages/About";
@@ -57,14 +57,14 @@ element={
 
 /> */}
 
-        <Route
+        {/* <Route
           path="/staff/documents"
           element={
             <ProtectedRoute role="admin">
               <Documents />
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
   );
 }
