@@ -31,7 +31,7 @@ function Contact() {
 
       mapTitle: "எங்கள் அலுவலகம்",
 
-      address: "உங்கள் அலுவலக முகவரியை இங்கே மாற்றவும்",
+      address: "8Th cross Vin Nagar, Near SRO office, Kattur, Trichy-14 "
     },
 
     en: {
@@ -52,7 +52,7 @@ function Contact() {
 
       mapTitle: "Our Location",
 
-      address: "Replace this with your office address",
+      address: "8Th cross Vin Nagar, Near SRO office, Kattur, Trichy-14",
     },
   };
 

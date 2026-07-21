@@ -7,7 +7,7 @@ function Hero() {
   const t = {
     ta: {
       title1: "ஸ்மார்ட் ஆவண",
-      title2: "எழுத்தர் மேலாண்மை",
+      title2: "எழுத்தர் ",
       description:
         "சொத்து பதிவு, விற்பனைப் பத்திரம், செட்டில்மென்ட், பட்டா பெயர் மாற்றம், வில்லங்கச் சான்றிதழ் மற்றும் அனைத்து சட்ட ஆவண சேவைகளும் ஒரே இடத்தில்.",
       book: "முன்பதிவு செய்யுங்கள்",
@@ -16,7 +16,7 @@ function Hero() {
 
     en: {
       title1: "Smart Document",
-      title2: "Writer Management",
+      title2: "Writer ",
       description:
         "Property Registration, Sale Deed, Settlement, Patta Transfer, Encumbrance Certificate and complete legal documentation.",
       book: "Book Appointment",
