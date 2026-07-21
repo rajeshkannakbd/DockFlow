@@ -41,11 +41,8 @@ background:#4169E1;
 border-radius:20px;
 
 }
-
 .container-custom{
-
-@apply max-w-7xl mx-auto px-5;
-
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .btn-primary{
@@ -80,4 +77,11 @@ border-radius:20px;
 
 .service-scroll::-webkit-scrollbar-thumb:hover {
   background: #1d4ed8;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
 }

@@ -5,7 +5,8 @@ function Footer() {
 
   const t = {
     ta: {
-      copyright: "© 2026 செல்வி ஆவண எழுத்தர்கள் | அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை",
+      copyright:
+        "© 2026 செல்வி ஆவண எழுத்தர்கள் | அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை",
     },
 
     en: {
@@ -14,17 +15,17 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-navy text-white py-10 mt-20 transition-all duration-300">
-      <div className="container-custom flex justify-center items-center">
+    <footer className="bg-navy text-white py-8 mt-20">
+      <div className="container-custom">
         <p
           className="
-            text-center
-            min-h-[28px]
-            whitespace-nowrap
-            transition-all
-            duration-300
-            ease-in-out
-          "
+    text-center
+    text-sm
+    md:text-base
+    leading-7
+    whitespace-normal
+    md:whitespace-nowrap
+  "
         >
           {t[language].copyright}
         </p>
