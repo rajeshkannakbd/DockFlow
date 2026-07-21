@@ -1,179 +1,88 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useLanguage } from "../context/LanguageContext";
+import { FaChevronDown, FaChevronUp, FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
+
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer";
+import { useLanguage } from "../context/LanguageContext";
+import services from "../constants/services";
 
 function ServicesPage() {
   const { language } = useLanguage();
+  const [openCard, setOpenCard] = useState(null);
 
   const t = {
     ta: {
       title: "எங்கள் ஆவண சேவைகள்",
-      subtitle:
-        "அனைத்து வகையான பதிவு மற்றும் சட்ட ஆவண சேவைகளும் ஒரே இடத்தில்.",
-
-      processTitle: "ஆவண பதிவு செயல்முறை",
-
-      process: [
-        "1. தேவையான ஆவணங்களை கொண்டு வரவும்.",
-        "2. ஆவணங்கள் சரிபார்க்கப்படும்.",
-        "3. வரைவு ஆவணம் தயாரிக்கப்படும்.",
-        "4. வாடிக்கையாளர் ஒப்புதல் பெறப்படும்.",
-        "5. சார்பதிவாளர் அலுவலகத்தில் பதிவு செய்யப்படும்.",
-        "6. பதிவு செய்யப்பட்ட அசல் ஆவணம் வழங்கப்படும்.",
-      ],
+      subtitle: "அனைத்து வகையான பதிவு மற்றும் சட்ட ஆவண சேவைகளும் ஒரே இடத்தில்.",
 
       requiredTitle: "பொதுவாக தேவையான ஆவணங்கள்",
 
       requiredDocs: [
         "ஆதார் அட்டை",
         "பான் அட்டை",
-        "பாஸ்போர்ட் அளவு புகைப்படம்",
-        "சொத்து தாய் பத்திரம்",
+        "பாஸ்போர்ட் புகைப்படம்",
+        "தாய் பத்திரம்",
         "பட்டா",
         "சிட்டா / அடங்கல்",
-        "வில்லங்கச் சான்றிதழ் (EC)",
+        "வில்லங்கச் சான்றிதழ்",
         "வரி ரசீது",
-        "அடையாளச் சாட்சிகள்",
       ],
 
-      services: [
-        {
-          title: "விற்பனைப் பத்திரம்",
-          en: "Sale Deed",
-          description:
-            "சொத்து உரிமையை விற்பவரிடமிருந்து வாங்குபவருக்கு சட்டபூர்வமாக மாற்றும் ஆவணம்.",
-        },
-        {
-          title: "தானப் பத்திரம்",
-          en: "Gift Deed",
-          description:
-            "சொத்தை இலவசமாக மற்றொருவருக்கு மாற்றும் சட்ட ஆவணம்.",
-        },
-        {
-          title: "செட்டில்மென்ட் பத்திரம்",
-          en: "Settlement Deed",
-          description:
-            "குடும்ப உறுப்பினர்களுக்கிடையே சொத்து உரிமையை மாற்ற பயன்படும் ஆவணம்.",
-        },
-        {
-          title: "அதிகாரப் பத்திரம்",
-          en: "Power of Attorney",
-          description:
-            "ஒருவரின் சார்பாக மற்றொருவர் செயல்பட அனுமதிக்கும் ஆவணம்.",
-        },
-        {
-          title: "பட்டா பெயர் மாற்றம்",
-          en: "Patta Transfer",
-          description:
-            "சொத்து உரிமை மாற்றத்திற்குப் பிறகு பட்டா பெயரை மாற்றும் சேவை.",
-        },
-        {
-          title: "வில்லங்கச் சான்றிதழ்",
-          en: "Encumbrance Certificate",
-          description:
-            "சொத்தின் சட்ட நிலையை உறுதிப்படுத்தும் அதிகாரப்பூர்வ சான்றிதழ்.",
-        },
-        {
-          title: "அடமானப் பத்திரம்",
-          en: "Mortgage Deed",
-          description:
-            "கடன் பெறுவதற்காக சொத்தை அடமானம் வைக்கும் ஆவணம்.",
-        },
-        {
-          title: "குத்தகை ஒப்பந்தம்",
-          en: "Lease Agreement",
-          description:
-            "வீடு அல்லது வணிக இடங்களை குத்தகைக்கு விடும் சட்ட ஒப்பந்தம்.",
-        },
+      processTitle: "பதிவு செயல்முறை",
+
+      process: [
+        "ஆவணங்களை கொண்டு வரவும்",
+        "ஆவண சரிபார்ப்பு",
+        "ஆவணம் தயாரித்தல்",
+        "வாடிக்கையாளர் ஒப்புதல்",
+        "சார்பதிவாளர் அலுவலகத்தில் பதிவு",
+        "அசல் ஆவணத்தை பெற்றுக்கொள்ளுங்கள்",
       ],
 
-      contact: "மேலும் தகவலுக்கு தொடர்பு கொள்ளுங்கள்",
-      button: "இப்போது தொடர்பு கொள்ளுங்கள்",
+      documents: "தேவையான ஆவணங்கள்",
+      open: "விவரங்களை காண",
+      close: "மறைக்க",
+
+      contact: "மேலும் தகவலுக்கு எங்களை தொடர்பு கொள்ளுங்கள்",
+      button: "தொடர்பு கொள்ளுங்கள்",
     },
 
     en: {
       title: "Our Document Services",
       subtitle:
-        "Complete registration and legal documentation services under one roof.",
-
-      processTitle: "Registration Process",
-
-      process: [
-        "1. Bring all required documents.",
-        "2. Document verification.",
-        "3. Draft preparation.",
-        "4. Client approval.",
-        "5. Registration at the Sub-Registrar Office.",
-        "6. Collect the registered original document.",
-      ],
+        "Complete Registration and Legal Documentation Services Under One Roof.",
 
       requiredTitle: "Common Required Documents",
 
       requiredDocs: [
         "Aadhaar Card",
         "PAN Card",
-        "Passport Size Photos",
-        "Parent / Previous Deed",
+        "Passport Size Photo",
+        "Parent Deed",
         "Patta",
         "Chitta / Adangal",
-        "Encumbrance Certificate (EC)",
+        "Encumbrance Certificate",
         "Property Tax Receipt",
-        "Identity Witnesses",
       ],
 
-      services: [
-        {
-          title: "Sale Deed",
-          en: "Sale Deed",
-          description:
-            "Legal transfer of ownership from seller to buyer.",
-        },
-        {
-          title: "Gift Deed",
-          en: "Gift Deed",
-          description:
-            "Transfer ownership without monetary consideration.",
-        },
-        {
-          title: "Settlement Deed",
-          en: "Settlement Deed",
-          description:
-            "Property settlement among family members.",
-        },
-        {
-          title: "Power of Attorney",
-          en: "Power of Attorney",
-          description:
-            "Authorize another person to act on your behalf.",
-        },
-        {
-          title: "Patta Transfer",
-          en: "Patta Transfer",
-          description:
-            "Transfer Patta ownership after property registration.",
-        },
-        {
-          title: "Encumbrance Certificate",
-          en: "Encumbrance Certificate",
-          description:
-            "Shows the legal history of the property.",
-        },
-        {
-          title: "Mortgage Deed",
-          en: "Mortgage Deed",
-          description:
-            "Legal mortgage document for securing loans.",
-        },
-        {
-          title: "Lease Agreement",
-          en: "Lease Agreement",
-          description:
-            "Agreement for residential or commercial leasing.",
-        },
+      processTitle: "Registration Process",
+
+      process: [
+        "Bring Required Documents",
+        "Document Verification",
+        "Draft Preparation",
+        "Client Approval",
+        "Registration at SRO",
+        "Collect Original Document",
       ],
 
-      contact: "Need more information?",
+      documents: "Required Documents",
+      open: "View Details",
+      close: "Hide Details",
+
+      contact: "Need More Information?",
       button: "Contact Us",
     },
   };
@@ -182,91 +91,144 @@ function ServicesPage() {
 
   return (
     <>
-    <Navbar />
-    <div className="bg-slate-50 py-16">
-      <div className="container-custom">
-        <div className="text-center mb-14">
-          <h1 className="text-5xl font-bold text-navy">{text.title}</h1>
-          <p className="mt-5 text-lg text-gray-600 max-w-3xl mx-auto">
-            {text.subtitle}
-          </p>
-        </div>
+      <Navbar />
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {text.services.map((service, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-md p-8"
-            >
-              <h2 className="text-2xl font-bold text-primary">
-                {service.title}
-              </h2>
+      <section className="bg-slate-50 py-16">
+        <div className="container-custom">
+          {/* Heading */}
 
-              {language === "ta" && (
-                <p className="text-sm text-gray-500 mt-1">
-                  {service.en}
-                </p>
-              )}
+          <div className="text-center mb-14">
+            <h1 className="text-4xl md:text-5xl font-bold text-blue-700">
+              {text.title}
+            </h1>
 
-              <p className="mt-5 text-gray-600 leading-8">
-                {service.description}
-              </p>
+            <p className="mt-5 max-w-3xl mx-auto text-gray-600 text-lg">
+              {text.subtitle}
+            </p>
+          </div>
+
+          {/* Services */}
+
+          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            {services.map((service) => {
+              const Icon = service.icon;
+
+              return (
+                <div
+                  key={service.id}
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-[520px] flex flex-col overflow-hidden"
+                >
+                  {/* Header */}
+                  <div className="p-6 border-b">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center">
+                        <Icon className="text-3xl text-blue-700" />
+                      </div>
+
+                      <div>
+                        <h2 className="text-xl font-bold text-blue-700">
+                          {language === "ta"
+                            ? service.titleTa
+                            : service.titleEn}
+                        </h2>
+
+                        {language === "ta" && (
+                          <p className="text-sm text-gray-500">
+                            {service.titleEn}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <p className="mt-5 text-gray-600 leading-7">
+                      {service.description[language]}
+                    </p>
+                  </div>
+
+                  {/* Documents */}
+
+                  <div className="flex-1 overflow-y-auto service-scroll p-6">
+                    <h3 className="text-lg font-bold text-blue-700 mb-5">
+                      {language === "ta"
+                        ? "தேவையான ஆவணங்கள்"
+                        : "Required Documents"}
+                    </h3>
+
+                    <div className="space-y-3">
+                      {service.documents[language].map((doc, index) => (
+                        <div
+                          key={index}
+                          className="flex items-start gap-3 bg-slate-50 rounded-lg p-3 hover:bg-blue-50 transition"
+                        >
+                          <FaCheckCircle className="text-green-600 mt-1 flex-shrink-0" />
+
+                          <span>{doc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {/* Common Documents */}
+
+          <div className="bg-white rounded-2xl shadow-lg p-10 mt-20">
+            <h2 className="text-3xl font-bold text-blue-700">
+              {text.requiredTitle}
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-4 mt-8">
+              {text.requiredDocs.map((doc, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <FaCheckCircle className="text-green-600" />
+                  <span>{doc}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="bg-white rounded-2xl shadow-md p-10 mt-16">
-          <h2 className="text-3xl font-bold text-primary">
-            {text.requiredTitle}
-          </h2>
+          {/* Process */}
 
-          <div className="grid md:grid-cols-2 gap-4 mt-8">
-            {text.requiredDocs.map((doc, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-3"
-              >
-                <span className="text-green-600 text-xl">✓</span>
-                <span>{doc}</span>
-              </div>
-            ))}
+          <div className="bg-white rounded-2xl shadow-lg p-10 mt-16">
+            <h2 className="text-3xl font-bold text-blue-700">
+              {text.processTitle}
+            </h2>
+
+            <div className="mt-8 space-y-4">
+              {text.process.map((step, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 border-l-4 border-blue-700 pl-5 py-3"
+                >
+                  <div className="w-8 h-8 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold">
+                    {index + 1}
+                  </div>
+
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+
+          <div className="bg-blue-700 rounded-2xl text-white text-center py-14 mt-16">
+            <h2 className="text-3xl font-bold">{text.contact}</h2>
+
+            <Link
+              to="/contact"
+              className="inline-block mt-8 bg-white text-blue-700 px-8 py-4 rounded-xl font-semibold hover:scale-105 transition"
+            >
+              {text.button}
+            </Link>
           </div>
         </div>
+      </section>
 
-        <div className="bg-white rounded-2xl shadow-md p-10 mt-16">
-          <h2 className="text-3xl font-bold text-primary">
-            {text.processTitle}
-          </h2>
-
-          <div className="mt-8 space-y-4">
-            {text.process.map((step, index) => (
-              <div
-                key={index}
-                className="border-l-4 border-primary pl-4 py-2"
-              >
-                {step}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-primary rounded-2xl text-white text-center py-14 mt-16">
-          <h2 className="text-3xl font-bold">
-            {text.contact}
-          </h2>
-
-          <Link
-            to="/contact"
-            className="inline-block mt-8 bg-white text-primary px-8 py-4 rounded-xl font-semibold hover:scale-105 transition"
-          >
-            {text.button}
-          </Link>
-        </div>
-      </div>
-    </div>
-    <Footer />  
+      <Footer />
     </>
   );
 }
 
-export default ServicesPage;  
+export default ServicesPage;

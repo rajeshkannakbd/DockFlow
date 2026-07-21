@@ -1,72 +1,72 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+  import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
+  import Login from "./pages/Login";
 
-import Home from "./pages/Home"
+  import Home from "./pages/Home"
 
-// import StaffDashboard from "./pages/Staff/Dashboard";
+  // import StaffDashboard from "./pages/Staff/Dashboard";
 
-// import ClientDashboard from "./pages/client/Dashboard";
+  // import ClientDashboard from "./pages/client/Dashboard";
 
-import ServicesPage from "./pages/ServicesPage";
+  import ServicesPage from "./pages/ServicesPage";
 
-// import ProtectedRoute from "./components/ProtectedRoute";
+  // import ProtectedRoute from "./components/ProtectedRoute";
 
-import Documents from "./pages/Staff/Documents";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+  import Documents from "./pages/Staff/Documents";
+  import About from "./pages/About";
+  import Contact from "./pages/Contact";
 
-function App() {
-  return (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+  function App() {
+    return (
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-        {/* <Route
+          {/* <Route
 
-path="/staff"
+  path="/staff"
 
-element={
+  element={
 
-<ProtectedRoute role="admin">
+  <ProtectedRoute role="admin">
 
-<StaffDashboard/>
+  <StaffDashboard/>
 
-</ProtectedRoute>
+  </ProtectedRoute>
 
-} */}
+  } */}
 
-        {/* /> */}
+          {/* /> */}
 
-        {/* <Route
+          {/* <Route
 
-path="/client"
+  path="/client"
 
-element={
+  element={
 
-<ProtectedRoute role="client">
+  <ProtectedRoute role="client">
 
-<ClientDashboard/>
+  <ClientDashboard/>
 
-</ProtectedRoute>
+  </ProtectedRoute>
 
-}
+  }
 
-/> */}
+  /> */}
 
-        {/* <Route
-          path="/staff/documents"
-          element={
-            <ProtectedRoute role="admin">
-              <Documents />
-            </ProtectedRoute>
-          }
-        /> */}
-      </Routes>
-  );
-}
+          {/* <Route
+            path="/staff/documents"
+            element={
+              <ProtectedRoute role="admin">
+                <Documents />
+              </ProtectedRoute>
+            }
+          /> */}
+        </Routes>
+    );
+  }
 
-export default App;
+  export default App;

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { HiMenu, HiX } from "react-icons/hi";
 import logo from "../assets/logo.png";
 import { useLanguage } from "../context/LanguageContext";
 
 function Navbar() {
   const { language, toggleLanguage } = useLanguage();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const t = {
     ta: {
@@ -31,79 +34,143 @@ function Navbar() {
   const text = t[language];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b transition-all duration-300">
-      <div className="container-custom flex items-center justify-between h-20">
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="container-custom">
 
-        {/* Logo */}
+        {/* Navbar */}
 
-        <Link
-          to="/"
-          className="flex items-center gap-3 w-[430px] transition-all duration-300"
-        >
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-32 h-24 object-contain flex-shrink-0"
-          />
+        <div className="flex items-center justify-between h-20">
 
-          <div className="overflow-hidden">
-            <h1 className="text-2xl font-bold text-blue-700 whitespace-nowrap transition-all duration-300">
-              {text.company}
-            </h1>
-
-            <p className="text-xs text-gray-500 whitespace-nowrap transition-all duration-300">
-              {text.subtitle}
-            </p>
-          </div>
-        </Link>
-
-        {/* Menu */}
-
-        <div className="hidden md:flex items-center gap-6 font-medium text-gray-700">
+          {/* Logo */}
 
           <Link
             to="/"
-            className="min-w-[80px] text-center hover:text-blue-700 transition-all duration-300 whitespace-nowrap"
+            className="flex items-center gap-2 md:gap-3 min-w-0 flex-1"
           >
-            {text.home}
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-14 h-14 md:w-20 md:h-20 object-contain flex-shrink-0"
+            />
+
+            <div className="min-w-0">
+
+              <h1
+                className="
+                  text-sm
+                  sm:text-lg
+                  md:text-2xl
+                  font-bold
+                  text-blue-700
+                  truncate
+                "
+              >
+                {text.company}
+              </h1>
+
+              <p
+                className="
+                  hidden
+                  md:block
+                  text-xs
+                  text-gray-500
+                "
+              >
+                {text.subtitle}
+              </p>
+
+            </div>
           </Link>
 
-          <Link
-            to="/services"
-            className="min-w-[90px] text-center hover:text-blue-700 transition-all duration-300 whitespace-nowrap"
-          >
-            {text.services}
-          </Link>
+          {/* Desktop Menu */}
 
-          <Link
-            to="/about"
-            className="min-w-[110px] text-center hover:text-blue-700 transition-all duration-300 whitespace-nowrap"
-          >
-            {text.about}
-          </Link>
+          <div className="hidden lg:flex items-center gap-8 font-medium">
 
-          <Link
-            to="/contact"
-            className="min-w-[90px] text-center hover:text-blue-700 transition-all duration-300 whitespace-nowrap"
-          >
-            {text.contact}
-          </Link>
+            <Link to="/">{text.home}</Link>
+
+            <Link to="/services">{text.services}</Link>
+
+            <Link to="/about">{text.about}</Link>
+
+            <Link to="/contact">{text.contact}</Link>
+
+            <button
+              onClick={toggleLanguage}
+              className="border border-blue-700 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition"
+            >
+              🌐 {text.switch}
+            </button>
+
+            <Link
+              to="/login"
+              className="bg-blue-700 text-white px-5 py-2 rounded-lg"
+            >
+              {text.login}
+            </Link>
+
+          </div>
+
+          {/* Mobile Menu Button */}
 
           <button
-            onClick={toggleLanguage}
-            className="w-28 border border-blue-700 text-blue-700 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition-all duration-300"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="lg:hidden text-3xl text-blue-700 flex-shrink-0 ml-3"
           >
-            🌐 {text.switch}
+            {menuOpen ? <HiX /> : <HiMenu />}
           </button>
 
-          <Link
-            to="/login"
-            className="w-28 text-center bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg transition-all duration-300"
-          >
-            {text.login}
-          </Link>
-
         </div>
+
+        {/* Mobile Menu */}
+
+        <div
+          className={`
+            lg:hidden
+            overflow-hidden
+            transition-all
+            duration-300
+            ${menuOpen ? "max-h-[500px] py-4 border-t" : "max-h-0"}
+          `}
+        >
+          <div className="flex flex-col gap-4">
+
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              {text.home}
+            </Link>
+
+            <Link to="/services" onClick={() => setMenuOpen(false)}>
+              {text.services}
+            </Link>
+
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              {text.about}
+            </Link>
+
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>
+              {text.contact}
+            </Link>
+
+            <button
+              onClick={() => {
+                toggleLanguage();
+                setMenuOpen(false);
+              }}
+              className="border border-blue-700 text-blue-700 rounded-lg py-2"
+            >
+              🌐 {text.switch}
+            </button>
+
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="bg-blue-700 text-white text-center py-3 rounded-lg"
+            >
+              {text.login}
+            </Link>
+
+          </div>
+        </div>
+
       </div>
     </nav>
   );
